@@ -1,8 +1,0 @@
-#!/bin/bash
-# lowfi_cicd post-commit hook script
-
-TIMESTAMP=`date +%d-%m-%y-%h-%m-%s`
-log_path="./logs"
-msg="$TIMESTAMP : Post-commit hook complete."
-echo $msg >> $log_path/lowfi_cicd-$TIMESTAMP.log
-echo $msg >> $log_path/lowfi_cicd-latest.log

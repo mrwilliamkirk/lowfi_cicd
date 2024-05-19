@@ -1,0 +1,13 @@
+#!/bin/bash
+# lowfi_cicd post-commit hook script
+
+TIMESTAMP=`date +%d-%m-%y-%h-%m-%s`
+log_path="./logs"
+msg="$TIMESTAMP : lowfi automation complete."
+
+# your commands here
+# log as you'd like to the unique timestamped log or
+# to the latest for monitor live, or both
+
+echo $msg >> $log_path/lowfi-$TIMESTAMP.log
+echo $msg >> $log_path/lowfi-latest.log
