@@ -1,0 +1,13 @@
+v023
+
+Goal:
+
+	A simple post-commit based skeleton for setting up a simple low fi ci/cd work flow using just git.
+
+
+	1. touch .git/hooks/post-commit
+	2. chmod u+x .git/hooks/post-commit
+	3. create log folder
+	4. tail -f log in tmux
+	5. trigger jobs
+	
