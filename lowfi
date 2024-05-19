@@ -1,5 +1,5 @@
 #!/bin/bash
-# lowfi_cicd post-commit hook script
+# lowfi cicd post-commit hook script
 
 TIMESTAMP=`date +%d-%m-%y-%h-%m-%s`
 log_path="./logs"
