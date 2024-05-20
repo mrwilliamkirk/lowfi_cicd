@@ -1,13 +1,49 @@
 #!/bin/bash
 # lowfi cicd post-commit hook script
 
-TIMESTAMP=`date +%d-%m-%y-%h-%m-%s`
+# Function to initialize the project
+initialize_project() {
+    echo "Initializing lowfi CI/CD post-commit hook..."
+
+    # Create logs directory if it doesn't exist
+    if [ ! -d "logs" ]; then
+        mkdir logs
+        echo "Created logs directory."
+    else
+        echo "Logs directory already exists."
+    fi
+
+    # Create symlink for the post-commit hook
+    if [ -f ".git/hooks/post-commit" ]; then
+        echo "Post-commit hook already exists. Exiting initialization."
+        exit 1
+    fi
+
+    ln "$(pwd)/$0" .git/hooks/post-commit
+    chmod u+x .git/hooks/post-commit
+    echo "Linked and set executable for post-commit hook."
+
+    echo "Initialization complete."
+}
+
+# Check if the --init argument is provided
+if [ "$1" == "--init" ]; then
+    initialize_project
+    exit 0
+fi
+
+# Main script functionality
+TIMESTAMP=$(date +%d-%m-%y-%H-%M-%S)
 log_path="./logs"
 msg="$TIMESTAMP : lowfi automation complete."
 
-# your commands here
-# log as you'd like to the unique timestamped log or
-# to the latest for monitor live, or both
+# Ensure the logs directory exists
+if [ ! -d "$log_path" ]; then
+    mkdir -p "$log_path"
+fi
 
-echo $msg >> $log_path/lowfi-$TIMESTAMP.log
-echo $msg >> $log_path/lowfi-latest.log
+# Log the message to both timestamped and latest log files
+echo $msg >> "$log_path/lowfi-$TIMESTAMP.log"
+echo $msg >> "$log_path/lowfi-latest.log"
+
+echo "Log entry added: $msg"

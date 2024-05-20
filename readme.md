@@ -7,15 +7,8 @@ Link to post-commit, tail the latest log for monitoring, and the rest is up to y
 Setup:
 
 ```bash
-./setup.sh
-```
-
-Which does:
-
-```bash
-mkdir logs
-ln lowfi .git/hooks/post-commit
 chmod u+x lowfi
+./lowfi --init
 ```
 
 you can now automate post-commit actions and log your output
